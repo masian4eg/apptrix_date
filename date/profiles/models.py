@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.conf import settings
 from django.db.models import Q
+from django.core.mail import send_mail
 
 
 class ProfileManager(models.Manager):
@@ -82,6 +83,13 @@ class Relationship(models.Model):
     status = models.CharField(max_length=8, choices=STATUS_CHOICES)
 
     objects = RelationshipManager()
+
+    def send_match(receiver, sender):
+        subject = 'У вас есть пара!'
+        message = f'Вы понравились {sender.first_name}!  Почта участника: {sender.email}'
+        admin_email = settings.EMAIL
+        user_email = [receiver.email]
+        return send_mail(subject, message, admin_email, user_email)
 
     def __str__(self):
         return f'{self.sender}-{self.receiver}-{self.status}'

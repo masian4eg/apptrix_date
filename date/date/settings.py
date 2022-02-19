@@ -146,3 +146,5 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = '/accounts/login/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/profiles/myprofile/'
+
+EMAIL = 'maxi4eg@mail.ru'
