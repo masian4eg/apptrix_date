@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Принятые симпатии
+{% endblock title %}
+
+{% block content %}
+
+{% if is_empty  %}
+    <h1>Нет симпатий...</h1>
+{% endif %}
+
+{% for obj in qs %}
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="three wide column">
+                    <img class="ui small circular image" src="{{obj.avatar.url}}">
+                </div>
+                <div class="thirteen wide column">
+                    <h3>{{obj.user}}</h3>
+                    <br>
+                    <a href="{% url 'profiles:profile-client' obj.pk %}"><button class="ui primary button w-big mb-5">Смотреть профиль</button></a>
+                    <form action="{% url 'profiles:accept-match' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                        <button type="submit" class="ui positive basic button w-big mb-5">
+                            <i class="check icon"></i>Принять</button>
+                    </form>
+                    <form action="{% url 'profiles:reject-match' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                        <button type="submit" class="ui negative basic button w-big mb-5">
+                            <i class="close icon"></i>Отклонить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock content %}

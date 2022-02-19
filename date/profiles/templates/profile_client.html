@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профиль
+{% endblock title %}
+
+{% block content %}
+<h3>Профиль юзера {{ profile_client.first_name }}</h3>
+<div class="ui grid">
+    <div class="row">
+        <div class="six wide column">
+        <img class="oi medium rounded image" src="{{profile_client.avatar.url}}">
+        </div>
+        <div class="ten wide column">
+            <table class="iu table">
+            <tbody>
+            <tr>
+            <td>Пользователь</td>
+            <td>{{profile_client.user}}</td>
+            </tr>
+            <tr>
+              <td>Имя</td>
+              <td>{{profile_client.first_name}}</td>
+            </tr>
+            <tr>
+              <td>Фамилия</td>
+              <td>{{profile_client.last_name}}</td>
+            </tr>
+            <tr>
+              <td>Пол</td>
+              <td>{{profile_client.gender}}</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

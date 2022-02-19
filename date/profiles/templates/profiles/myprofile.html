@@ -6,8 +6,7 @@
 
 {% block content %}
 
-<!-- MODAL -->
-<div class="ui modal mymodal"> <!-- style.css -->
+<div class="ui modal mymodal">
   <i class="close icon"></i>
   <div class="header">
     Обновить профиль
@@ -19,8 +18,8 @@
     <div class="description">
       <div class="ui header">Добавить/изменить информацию о себе</div>
       <form action="" method="POST" class="ui form" enctype="multipart/form-data">
-        {% csrf_token %} <!--добавляем токен при методе POST-->
-        {{form.as_p}} <!--.as_p добавляет пространство между строками-->
+        {% csrf_token %}
+        {{form.as_p}}
       </div>
   </div>
   <div class="actions">
@@ -33,7 +32,7 @@
 </div>
 
 <div class="ui segment">
-  {% if confirm %} <!--если в методе вьюхи "обновить профиль" все ок...-->
+  {% if confirm %}
     <div class="ui green message">Профиль обновлен</div>
   {% endif %}
   <h3>Профиль юзера {{request.user}}</h3>
