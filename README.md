@@ -7,3 +7,4 @@ Profile page - app/profiles/myprofile/ (can update info)
 /profiles/all_profiles/ - list of all profiles
 /profiles/{id} - profiles detail
 /profiles/my_match/ - list of received likes
+![img.png](img.png)
