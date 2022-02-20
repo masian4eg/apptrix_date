@@ -12,18 +12,15 @@ class ProfileManager(models.Manager):
         profiles = Profile.objects.all().exclude(user=sender) # все профили кроме отправителя
         profile = Profile.objects.get(user=sender) # отправитель
         qs = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile)) # фильтр отправитель or получатель
-        print(qs)
 
         accepted = ([])
         for rel in qs:
             if rel.status == 'accepted': # заносим в список accepted профили подтвержденных друзей
                 accepted.add(rel.receiver)
                 accepted.add(rel.sender)
-        print(accepted)
 
         available = [profile for profile in profiles if profile not in accepted]
         # если профиля нет в общем списке профилей, то добавляем его в список available
-        print(available)
         return available
 
     def get_all_profiles(self, me):
@@ -44,6 +41,8 @@ class Profile(models.Model):
     avatar = models.ImageField(default='avatar.png', upload_to='avatars/')
     email = models.EmailField(max_length=200, blank=True)
     match = models.ManyToManyField(User, blank=True, related_name='match')
+    latitude = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
+    longitude = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
 
     objects = ProfileManager()
 
