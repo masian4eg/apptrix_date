@@ -41,8 +41,6 @@ class Profile(models.Model):
     avatar = models.ImageField(default='avatar.png', upload_to='avatars/')
     email = models.EmailField(max_length=200, blank=True)
     match = models.ManyToManyField(User, blank=True, related_name='match')
-    latitude = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
-    longitude = models.DecimalField(decimal_places=2, max_digits=20, blank=True, null=True)
 
     objects = ProfileManager()
 

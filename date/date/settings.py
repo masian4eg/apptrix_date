@@ -132,10 +132,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_project')
 ]
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_date', 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_date', 'static_root')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_date', 'media_root')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static_date', 'media_root')
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
