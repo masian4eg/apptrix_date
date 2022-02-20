@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-import dj-database-url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -150,6 +149,3 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/profiles/myprofile/'
 
 EMAIL = 'maxi4eg@mail.ru'
-
-db_from_env = dj-database-url.config()
-DATABASE['default'].update(db_from_env)
