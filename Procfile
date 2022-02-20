@@ -1,1 +1,1 @@
-web: gunicorn date.wsgi --log-file -
+web: gunicorn date.date.wsgi --log-file -
