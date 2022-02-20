@@ -4,6 +4,7 @@ from .forms import ProfileModelForm
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.models import User
 from django.db.models import Q
+from .filters import ProfileFilter
 
 
 def my_profile_view(request):
@@ -74,10 +75,11 @@ def reject_match(request):
     return redirect('profiles:my-match-view')
 
 
-class ProfileListView(ListView): # список отправленных и присланных запрос на добавление в друзья
+class ProfileListView(ListView):
     model = Profile
     template_name = 'profiles/profile_list.html'
     context_object_name = 'qs'
+    queryset = Profile.objects.all()
 
     def get_queryset(self):
         qs = Profile.objects.get_all_profiles(self.request.user)
@@ -103,6 +105,7 @@ class ProfileListView(ListView): # список отправленных и пр
         context['is_empty'] = False
         if len(self.get_queryset()) == 0:
             context['is_empty'] = True
+        context['filter'] = ProfileFilter(self.request.GET, queryset=self.get_queryset())
 
         return context
 

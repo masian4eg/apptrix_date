@@ -11,3 +11,5 @@ Profile page - app/profiles/myprofile/ (can update info)
 ![img.png](img.png)
 
 Add mail-function in method of Relationship
+5. Add lib django-filters for search by users gender, first name, last name.
+/profiles/all_profiles/
